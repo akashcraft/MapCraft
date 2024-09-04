@@ -1,0 +1,329 @@
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    font-family: 'Calibri';
+}
+
+.place-card-large.place-card {
+    display: none !important;
+}
+
+/* Main App */
+div.mainapp {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Header */
+header {
+    background: rgb(53, 53, 53);
+    height: 3rem;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+}
+
+div.headerleft,
+div.headerright {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.18rem;
+}
+
+a.home i {
+    margin-right: 0.4rem;
+}
+
+
+a.home,
+a.play {
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    height: 3rem;
+    padding: 0rem 0.6rem;
+    font-size: 1.2rem;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 0.4rem;
+}
+
+a.home:hover,
+a.play:hover {
+    background: #454545;
+    transition: 0.25s;
+}
+
+
+img.headerimg {
+    width: 30px;
+    height: 31.2px;
+    margin-left: 0.6rem;
+}
+
+a.title {
+    color: white;
+    font-weight: bold;
+    font-size: 1.55rem;
+    margin-left: 0.6rem;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+div.loading {
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+div.loadwrapper img {
+    width: 8rem;
+    animation: rotate 1.5s 0s linear infinite;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes rotate {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}
+
+/* Left Panel */
+div.left-panel-holder {
+    position: relative;
+    width: calc(100vw - 25rem);
+    height: 100%;
+}
+
+div.left-panel {
+    position: fixed;
+    width: calc(100vw - 25rem);
+    height: 100%;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.french-small {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+}
+
+img.map-plane {
+    position: absolute;
+    width: 7rem;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform-origin: 50% 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Right Panel */
+div.right-panel {
+    background-color: #f1f1f1;
+    height: 100%;
+    width: 25rem;
+    position: fixed;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+}
+
+div.top-info-container {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 4rem;
+    margin-bottom: 0;
+    height: 4rem;
+    grid-template-areas:
+        'origin logo destination'
+        'origini logo destinationi';
+    ;
+    row-gap: 0.4rem;
+}
+
+div.top-info1 {
+    grid-area: origin;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    font-size: 2.5rem;
+}
+
+div.top-info2 {
+    grid-area: origini;
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.top-info3 {
+    grid-area: logo;
+    color: red;
+    rotate: 90deg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.top-info4 {
+    grid-area: destination;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 2.5rem;
+}
+
+div.top-info5 {
+    grid-area: destinationi;
+}
+
+
+div.bottom-info-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(9 1fr);
+    margin: 3rem;
+    height: 25rem;
+    grid-template-areas:
+        'lto ltd'
+        'ltoi ltdi'
+        'gs alt'
+        'gsi alti'
+        'dt dr'
+        'dti dri'
+        'tr eta'
+        'tri etai'
+        'metric arrival'
+    ;
+}
+
+div.bottom-info1 {
+    grid-area: lto;
+}
+
+div.bottom-info2 {
+    grid-area: ltoi;
+}
+
+div.bottom-info3 {
+    grid-area: ltd;
+}
+
+div.bottom-info4 {
+    grid-area: ltdi;
+}
+
+div.bottom-info5 {
+    grid-area: gs;
+}
+
+div.bottom-info6 {
+    grid-area: gsi;
+}
+
+div.bottom-info7 {
+    grid-area: alt;
+}
+
+div.bottom-info8 {
+    grid-area: alti;
+}
+
+div.bottom-info9 {
+    grid-area: dt;
+}
+
+div.bottom-info10 {
+    grid-area: dti;
+}
+
+div.bottom-info11 {
+    grid-area: dr;
+}
+
+div.bottom-info12 {
+    grid-area: dri;
+}
+
+div.bottom-info13 {
+    grid-area: tr;
+}
+
+div.bottom-info14 {
+    grid-area: tri;
+}
+
+div.bottom-info15 {
+    grid-area: eta;
+}
+
+div.bottom-info16 {
+    grid-area: etai;
+}
+
+div.bottom-info17 {
+    color: white;
+    margin: 0.5rem;
+    margin-right: 1rem;
+    margin-left: 0;
+    padding: 0.1rem 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: metric;
+    background-color: red;
+}
+
+div.bottom-info18 {
+    color: white;
+    margin: 0.5rem;
+    margin-left: 0rem;
+    margin-right: 1rem;
+    padding: 0.1rem 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: arrival;
+    background-color: black;
+}
+
+div.bottom-head {
+    color: gray;
+    font-size: smaller;
+}
+
+div.bottom-info {
+    position: relative;
+    bottom: 0.5rem;
+    color: black;
+    font-size: 1.7rem;
+}

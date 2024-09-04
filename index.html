@@ -1,0 +1,70 @@
+<html>
+<head>
+	<link rel="icon" href="img/Channel Logo Rounded.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <title>MapCraft</title>
+</head>
+<body>
+    <div class="loading">
+        <div class="loadwrapper"><img src="img/spinner.png"></div>
+        <p style="font-size: 1.5em; margin-top:1rem;">Loading/Chargement</p>
+    </div>
+    <div class="mainapp">
+        <header>
+            <div class="headerleft">
+                <img class="headerimg" src="img/Channel Logo Rounded.png">
+                <a href="" class="title">MapCraft</h1>
+            </div>
+            <div class="headerright">
+                <a href="" class="home"><i class="material-icons">map</i>WHERE WE FLY</a>
+                <a href="" target="_blank" class="play"><i class="material-icons">play_arrow</i></a>
+            </div>
+        </header>
+    <div class="left-panel-holder">
+    <img src="img/plane.png" class="map-plane">
+    <div class="left-panel" id="map">
+        SYSTEM UNAVAILABLE<br><span class="french-small">SYSTÈME INDISPONIBLE</span></div>
+    </div>
+    <div class="right-panel">
+        <div class="top-info-container">
+            <div class="top-info1">YYT</div>
+            <div class="top-info2">St. John's</div>
+            <div class="top-info3"><i style="font-size: 2.5rem;" class="material-icons">flight</i></div>
+            <div class="top-info4">YYZ</div>
+            <div class="top-info5">Toronto</div>
+        </div>
+        <div class="bottom-info-container">
+            <div class="bottom-info1 bottom-head">TIME AT ORIGIN</div>
+            <div class="bottom-info2 bottom-info">00:00</div>
+            <div class="bottom-info3 bottom-head">TIME AT DESTINATION</div>
+            <div class="bottom-info4 bottom-info">00:00</div>
+            <div class="bottom-info5 bottom-head">GROUND SPEED</div>
+            <div class="bottom-info6 bottom-info">0 km/h</div>
+            <div class="bottom-info7 bottom-head">ALTITUDE</div>
+            <div class="bottom-info8 bottom-info">0 m</div>
+            <div class="bottom-info9 bottom-head">DISTANCE TRAVELLED</div>
+            <div class="bottom-info10 bottom-info">0 km</div>
+            <div class="bottom-info11 bottom-head">DISTANCE REMAINING</div>
+            <div class="bottom-info12 bottom-info">0 km</div>
+            <div class="bottom-info13 bottom-head">TIME REMAINING</div>
+            <div class="bottom-info14 bottom-info">00:00</div>
+            <div class="bottom-info15 bottom-head">ESTIMATED TIME OF ARRIVAL</div>
+            <div class="bottom-info16 bottom-info">00:00</div>
+            <div class="bottom-info17 bottom-button">METRIC</div>
+            <div class="bottom-info18 bottom-button">IMPERIAL</div>
+        </div>
+    </div>
+    </div>
+</body>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
+<script src="index.js"></script>
+</html>
