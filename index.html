@@ -24,21 +24,19 @@
             </div>
             <div class="headerright">
                 <a href="" class="home"><i class="material-icons">map</i>WHERE WE FLY</a>
-                <a href="" target="_blank" class="play"><i class="material-icons">play_arrow</i></a>
+                <a class="pane"><i class="material-symbols-outlined">info</i></a>
+                <a class="play"><i class="material-icons">pause</i></a>
             </div>
         </header>
-    <div class="left-panel-holder">
-    <img src="img/plane.png" class="map-plane">
     <div class="left-panel" id="map">
-        SYSTEM UNAVAILABLE<br><span class="french-small">SYSTÈME INDISPONIBLE</span></div>
     </div>
-    <div class="right-panel">
+    <div class="right-panel animate-right-panel-reverse">
         <div class="top-info-container">
-            <div class="top-info1">YYT</div>
-            <div class="top-info2">St. John's</div>
+            <div class="top-info1">N/A</div>
+            <div class="top-info2">N/A</div>
             <div class="top-info3"><i style="font-size: 2.5rem;" class="material-icons">flight</i></div>
-            <div class="top-info4">YYZ</div>
-            <div class="top-info5">Toronto</div>
+            <div class="top-info4">N/A</div>
+            <div class="top-info5">N/A</div>
         </div>
         <div class="bottom-info-container">
             <div class="bottom-info1 bottom-head">TIME AT ORIGIN</div>
@@ -61,10 +59,9 @@
             <div class="bottom-info18 bottom-button">IMPERIAL</div>
         </div>
     </div>
-    </div>
 </body>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="leaflet.rotatedMarker.js"> </script>
+<script src="https://unpkg.com/@turf/turf"></script>
 <script src="index.js"></script>
 </html>

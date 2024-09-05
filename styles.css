@@ -42,8 +42,8 @@ a.home i {
     margin-right: 0.4rem;
 }
 
-
 a.home,
+a.pane,
 a.play {
     cursor: pointer;
     color: white;
@@ -56,12 +56,16 @@ a.play {
     margin-right: 0.4rem;
 }
 
+a.pane i {
+    color: red;
+}
+
 a.home:hover,
+a.pane:hover,
 a.play:hover {
     background: #454545;
     transition: 0.25s;
 }
-
 
 img.headerimg {
     width: 30px;
@@ -109,41 +113,26 @@ body::-webkit-scrollbar {
 }
 
 /* Left Panel */
-div.left-panel-holder {
-    position: relative;
-    width: calc(100vw - 25rem);
-    height: 100%;
-}
-
 div.left-panel {
     position: fixed;
     width: calc(100vw - 25rem);
-    height: 100%;
+    height: 100vh;
     left: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 3rem;
 }
 
-.french-small {
-    margin-top: 0.5rem;
-    font-size: 1.5rem;
-}
-
-img.map-plane {
-    position: absolute;
-    width: 7rem;
-    z-index: 3;
-    left: 50%;
-    top: 50%;
-    transform-origin: 50% 50%;
-    transform: translate(-50%, -50%) rotate(45deg);
+div.leaflet-control-zoom,
+div.leaflet-bottom {
+    display: none !important;
 }
 
 /* Right Panel */
+span.marker-label {
+    color: white;
+    position: relative;
+    bottom: 3.3rem;
+    font-size: 1.2rem;
+}
+
 div.right-panel {
     background-color: #f1f1f1;
     height: 100%;
@@ -174,15 +163,16 @@ div.top-info-container {
 div.top-info1 {
     grid-area: origin;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
-    font-size: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2rem;
 }
 
 div.top-info2 {
     grid-area: origini;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    font-size: 1.2rem;
 }
 
 div.top-info3 {
@@ -192,18 +182,21 @@ div.top-info3 {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 0.4rem;
 }
 
 div.top-info4 {
     grid-area: destination;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    font-size: 2.5rem;
+    justify-content: center;
+    font-size: 3.2rem;
 }
 
 div.top-info5 {
     grid-area: destinationi;
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
 }
 
 
@@ -298,6 +291,7 @@ div.bottom-info17 {
     padding: 0.1rem 0.3rem;
     display: flex;
     justify-content: center;
+    cursor: pointer;
     align-items: center;
     grid-area: metric;
     background-color: red;
@@ -311,6 +305,7 @@ div.bottom-info18 {
     padding: 0.1rem 0.3rem;
     display: flex;
     justify-content: center;
+    cursor: pointer;
     align-items: center;
     grid-area: arrival;
     background-color: black;
@@ -326,4 +321,15 @@ div.bottom-info {
     bottom: 0.5rem;
     color: black;
     font-size: 1.7rem;
+}
+
+/* Animations */
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
 }
