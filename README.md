@@ -1,4 +1,4 @@
-## MapCraft
+# MapCraft
 Interactive Aircraft Progress Map inspired by Air Canada
 
 > [!NOTE]
