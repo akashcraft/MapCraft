@@ -2,14 +2,14 @@
 <head>
 	<link rel="icon" href="img/Channel Logo Rounded.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="styles-mapcraft.css">
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
-    <title>MapCraft</title>
+    <title>AkashCraft - MapCraft</title>
 </head>
 <body>
     <div class="loading">
@@ -20,17 +20,60 @@
         <header>
             <div class="headerleft">
                 <img class="headerimg" src="img/Channel Logo Rounded.png">
-                <a href="" class="title">MapCraft</h1>
+                <a href="javascript.php" class="title">MapCraft</h1>
             </div>
             <div class="headerright">
-                <a href="" class="home"><i class="material-icons">map</i>WHERE WE FLY</a>
+                <a class="home"><i class="material-icons">map</i>WHERE WE FLY</a>
+                <a class="settings"><i class="material-icons">settings</i></a>
                 <a class="pane"><i class="material-symbols-outlined">info</i></a>
                 <a class="play"><i class="material-icons">pause</i></a>
             </div>
         </header>
+        <div class="wherefly">
+            <div class="wherefly-main">
+            <h2>
+                This feature is not available at this moment
+            </h2>
+            <p>Thank you for experiencing my replication of Air Canada In-Flight System. Unfortunately, I cannot go any further and also replicate and code each part of this system. At this rate we would be making the whole operating system on the website and Air Canada will soon have a lawsuit against me lol. Appreciate your interest!</p>
+            <div class="wherefly-close">
+                Close
+            </div>
+            </div>  
+        </div>
+    <div class="no-left-panel">
+        <i onclick="window.location.href='javascript.php'" class="material-symbols-outlined panel-close">close</i>
+        <div class="no-left-panel-text">
+            <div>
+                <i class="material-symbols-outlined">location_off</i>
+                <img src="img/plane2.png">
+            </div>
+            <div class="no-left-panel-text">
+                <p class="no-left-panel-small">SYSTEM NOT AVAILABLE</p>
+                <p class="no-left-panel-small">SYSTÈME NON DISPONIBLE</p>
+            </div>
+        </div>
+    </div>
     <div class="left-panel" id="map">
     </div>
     <div class="right-panel animate-right-panel-reverse">
+        <div class="settings">
+            <div class="settings-head">Settings</div>
+            <div class="settings-text">ORIGIN</div>
+            <select id="origin-input">
+            </select>
+            <div class="settings-text">DESTINATION</div>
+            <select id="dest-input">
+            </select>
+            <div class="settings-text">UPDATE INTERVAL</div>
+            <select id="interval-input">
+                <option value="3sec">3 seconds</option>
+                <option value="5sec">5 seconds</option>
+                <option value="8sec">8 seconds</option>
+                <option value="10sec">10 seconds</option>
+                <option value="30sec">30 seconds</option>
+            </select>
+            <img src="img/handcraft.png" class="settings-logo">
+        </div>
         <div class="top-info-container">
             <div class="top-info1">N/A</div>
             <div class="top-info2">N/A</div>
@@ -63,5 +106,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="leaflet.rotatedMarker.js"> </script>
 <script src="https://unpkg.com/@turf/turf"></script>
-<script src="index.js"></script>
+<script src="mapcraft.js"></script>
+<script src="blocker.js"></script>
 </html>

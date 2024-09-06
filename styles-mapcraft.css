@@ -1,8 +1,75 @@
+@font-face {
+    font-family: 'FallingSky';
+    src: local('FallingSky'), url('FallingSky.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'Segoe UI';
+    src:
+        local("Segoe UI Light"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2) format("woff2"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff) format("woff"),
+        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf) format("truetype");
+    font-weight: 100;
+}
+
+/* App Settings */
+div.wherefly {
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #35353518;
+    color: white;
+    font-family: 'Segoe UI';
+    width: 100%;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+div.wherefly-main {
+    background-color: #353535;
+    padding: 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 55rem;
+}
+
+div.wherefly-main h2 {
+    font-weight: 500;
+}
+
+div.wherefly-close {
+    margin: 0;
+    margin-top: 0.8rem;
+    margin-bottom: 1.2rem;
+    margin-left: 50rem;
+    background-color: #454545;
+    width: fit-content;
+    padding: 4px 20px;
+    border: white solid 2.5px;
+    cursor: pointer;
+}
+
+div.wherefly-close:hover {
+    background-color: #656565;
+}
+
+img {
+    -webkit-user-drag: none;
+}
+
 body {
     background-color: black;
     margin: 0;
     padding: 0;
-    font-family: 'Calibri';
+    font-family: 'FallingSky';
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .place-card-large.place-card {
@@ -44,6 +111,7 @@ a.home i {
 
 a.home,
 a.pane,
+a.settings,
 a.play {
     cursor: pointer;
     color: white;
@@ -62,6 +130,7 @@ a.pane i {
 
 a.home:hover,
 a.pane:hover,
+a.settings:hover,
 a.play:hover {
     background: #454545;
     transition: 0.25s;
@@ -77,7 +146,7 @@ a.title {
     color: white;
     font-weight: bold;
     font-size: 1.55rem;
-    margin-left: 0.6rem;
+    margin-left: 0.7rem;
     text-align: center;
     color: white;
     text-decoration: none;
@@ -113,6 +182,54 @@ body::-webkit-scrollbar {
 }
 
 /* Left Panel */
+div.no-left-panel {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100dvh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    z-index: 8;
+    background-color: rgb(24, 24, 24);
+    color: white;
+    font-weight: lighter;
+
+    div {
+        i {
+            font-size: 2.5rem;
+            color: gray;
+        }
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+i.panel-close {
+    font-size: 1.5rem;
+    color: gray;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+}
+
+div.no-left-panel-text {
+    margin-top: 25dvh;
+}
+
+p.no-left-panel-small {
+    color: gray;
+    font-size: 1rem;
+    margin: 0;
+    margin-bottom: 0.4rem;
+}
+
 div.left-panel {
     position: fixed;
     width: calc(100vw - 25rem);
@@ -135,7 +252,7 @@ span.marker-label {
 
 div.right-panel {
     background-color: #f1f1f1;
-    height: 100%;
+    height: 100dvh;
     width: 25rem;
     position: fixed;
     right: 0;
@@ -144,6 +261,36 @@ div.right-panel {
     flex-direction: column;
     gap: 2rem;
     justify-content: center;
+}
+
+div.settings {
+    display: none;
+    flex-direction: column;
+    margin: 3rem;
+    margin-top: 5.5rem;
+    justify-content: flex-start;
+    gap: 0.7rem;
+    height: 70dvh;
+}
+
+div.settings-head {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+div.settings-text {
+    color: gray;
+    font-size: smaller;
+}
+
+div.settings select {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    padding: 0.2rem;
+}
+
+img.settings-logo {
+    margin-top: 5rem;
 }
 
 div.top-info-container {
@@ -182,7 +329,6 @@ div.top-info3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: 0.4rem;
 }
 
 div.top-info4 {
@@ -206,6 +352,8 @@ div.bottom-info-container {
     grid-template-rows: repeat(9 1fr);
     margin: 3rem;
     height: 25rem;
+    column-gap: 1.25rem;
+    font-family: 'Calibri';
     grid-template-areas:
         'lto ltd'
         'ltoi ltdi'
@@ -285,9 +433,7 @@ div.bottom-info16 {
 
 div.bottom-info17 {
     color: white;
-    margin: 0.5rem;
-    margin-right: 1rem;
-    margin-left: 0;
+    margin: 0.5rem 0;
     padding: 0.1rem 0.3rem;
     display: flex;
     justify-content: center;
@@ -299,9 +445,7 @@ div.bottom-info17 {
 
 div.bottom-info18 {
     color: white;
-    margin: 0.5rem;
-    margin-left: 0rem;
-    margin-right: 1rem;
+    margin: 0.5rem 0;
     padding: 0.1rem 0.3rem;
     display: flex;
     justify-content: center;
