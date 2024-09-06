@@ -290,6 +290,9 @@ function main(){
     $("select#origin-input").change(() => {
         const city = cities.find(city => city[1] === $("select#origin-input").val());
         orig = city;
+        if (!isMetric) {
+            $("div.bottom-info17").click();
+        }
         map.removeLayer(origin_marker);
         originLogo = L.divIcon({
             className: 'custom-icon',
@@ -314,6 +317,9 @@ function main(){
     $("select#dest-input").change(() => {
         const city = cities.find(city => city[1] === $("select#dest-input").val().slice(0, -1));
         dest = city;
+        if (!isMetric) {
+            $("div.bottom-info17").click();
+        }
         map.removeLayer(dest_marker);
         destLogo = L.divIcon({
             className: 'custom-icon',
@@ -374,15 +380,15 @@ function toDegrees(radians) {
 }
 
 function calculateHeading(lon1, lat1, lon2, lat2) {
-    const φ1 = toRadians(lat1);
-    const φ2 = toRadians(lat2);
-    const λ1 = toRadians(lon1);
-    const λ2 = toRadians(lon2);
+    var a1 = toRadians(lat1);
+    var a2 = toRadians(lat2);
+    var b1 = toRadians(lon1);
+    var b2 = toRadians(lon2);
 
-    const dLon = λ2 - λ1;
+    var dLon = b2 - b1;
 
-    const y = Math.sin(dLon) * Math.cos(φ2);
-    const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(dLon);
+    var y = Math.sin(dLon) * Math.cos(a2);
+    var x = Math.cos(a1) * Math.sin(a2) - Math.sin(a1) * Math.cos(a2) * Math.cos(dLon);
 
     let bearing = Math.atan2(y, x);
     bearing = toDegrees(bearing);

@@ -235,6 +235,7 @@ div.left-panel {
     width: calc(100vw - 25rem);
     height: 100vh;
     left: 0;
+    background-color: #262626;
 }
 
 div.leaflet-control-zoom,
