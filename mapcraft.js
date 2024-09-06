@@ -13,21 +13,35 @@ let isMetric = true;
 const cities = [
     ["DOH", "Doha", 25.26, 51.55, "Asia/Qatar"],
     ["KHR", "Al Khor", 25.66, 51.50, "Asia/Qatar"],
-    ["YYZ", "Toronto", 43.67, -79.63, "America/Toronto"],
     ["YYT", "St. John's", 47.62, -52.74, "America/St_Johns"],
+    ["YLW", "Kelowna", 49.95, -119.37, "America/Vancouver"],
     ["YVR", "Vancouver", 49.19, -123.18, "America/Vancouver"],
+    ["YYZ", "Toronto", 43.67, -79.63, "America/Toronto"],
     ["YOW", "Ottawa", 45.42, -75.69, "America/Toronto"],
     ["YUL", "Montreal", 45.5, -73.57, "America/Toronto"],
     ["YYC", "Calgary", 51.05, -114.07, "America/Edmonton"],
+    ["DEL", "New Delhi", 28.56, 77.1, "Asia/Kolkata"],
+    ["BOM", "Mumbai", 19.08, 72.88, "Asia/Kolkata"],
+    ["BLR", "Bengaluru", 12.97, 77.59, "Asia/Kolkata"],
+    ["HYD", "Hyderabad", 17.38, 78.48, "Asia/Kolkata"],
+    ["CCU", "Kolkata", 22.57, 88.36, "Asia/Kolkata"],
+    ["MAA", "Chennai", 13.08, 80.27, "Asia/Kolkata"],
+    ["AUH", "Abu Dhabi", 24.43, 54.65, "Asia/Dubai"],
+    ["DXB", "Dubai", 25.25, 55.36, "Asia/Dubai"],
+    ["RUH", "Riyadh", 24.71, 46.68, "Asia/Riyadh"],
+    ["JED", "Jeddah", 21.54, 39.17, "Asia/Riyadh"],
+    ["DMM", "Dammam", 26.43, 50.1, "Asia/Riyadh"],
+    ["MCT", "Muscat", 23.59, 58.28, "Asia/Muscat"],
+    ["SLL", "Salalah", 17.02, 54.09, "Asia/Muscat"],
+    ["IKA", "Tehran", 35.41, 51.15, "Asia/Tehran"],
+    ["AMM", "Amman", 31.72, 35.99, "Asia/Amman"],
+    ["KWI", "Kuwait", 29.24, 47.97, "Asia/Kuwait"],
     ["JFK", "New York", 40.64, -73.78, "America/New_York"],
     ["LAX", "Los Angeles", 33.94, -118.41, "America/Los_Angeles"],
     ["LHR", "London", 51.47, -0.45, "Europe/London"],
     ["CDG", "Paris", 49.01, 2.55, "Europe/Paris"],
-    ["AUH", "Abu Dhabi", 24.43, 54.65, "Asia/Dubai"],
-    ["DXB", "Dubai", 25.25, 55.36, "Asia/Dubai"],
     ["HND", "Tokyo", 35.55, 139.78, "Asia/Tokyo"],
     ["SYD", "Sydney", -33.87, 151.21, "Australia/Sydney"],
-    ["GRU", "São Paulo", -23.43, -46.47, "America/Sao_Paulo"],
     ["PEK", "Beijing", 40.08, 116.59, "Asia/Shanghai"],
     ["SIN", "Singapore", 1.35, 103.99, "Asia/Singapore"],
     ["MEX", "Mexico City", 19.43, -99.13, "America/Mexico_City"],
@@ -38,16 +52,10 @@ const cities = [
     ["MUC", "Munich", 48.35, 11.79, "Europe/Berlin"],
     ["CPT", "Cape Town", -33.93, 18.42, "Africa/Johannesburg"],
     ["BKK", "Bangkok", 13.69, 100.75, "Asia/Bangkok"],
-    ["JNB", "Johannesburg", -26.13, 28.23, "Africa/Johannesburg"],
-    ["DEL", "New Delhi", 28.56, 77.1, "Asia/Kolkata"],
-    ["BOM", "Mumbai", 19.08, 72.88, "Asia/Kolkata"],
-    ["BLR", "Bengaluru", 12.97, 77.59, "Asia/Kolkata"],
-    ["HYD", "Hyderabad", 17.38, 78.48, "Asia/Kolkata"],
-    ["CCU", "Kolkata", 22.57, 88.36, "Asia/Kolkata"],
-    ["MAA", "Chennai", 13.08, 80.27, "Asia/Kolkata"]
+    ["JNB", "Johannesburg", -26.13, 28.23, "Africa/Johannesburg"]
 ];
 let dest = cities[0];
-let orig = cities[2];
+let orig = cities[5];
 var latlngs2 = [[orig[2], orig[3]]];  
 
 let map, lat, lon, plane, polyline, polyline2, origin_marker, dest_marker, interval;

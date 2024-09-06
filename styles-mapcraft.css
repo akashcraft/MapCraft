@@ -182,7 +182,8 @@ body::-webkit-scrollbar {
 }
 
 /* Left Panel */
-div.no-left-panel {
+div.no-left-panel,
+div.no-left-panel2 {
     display: none;
     position: fixed;
     width: 100%;
@@ -210,6 +211,16 @@ div.no-left-panel {
     }
 }
 
+div.no-left-panel2 {
+    z-index: 9;
+}
+
+img.no-left-panel-image {
+    width: 100rem;
+    margin-top: 6rem;
+    margin-bottom: 0;
+}
+
 i.panel-close {
     font-size: 1.5rem;
     color: gray;
@@ -220,7 +231,7 @@ i.panel-close {
 }
 
 div.no-left-panel-text {
-    margin-top: 25dvh;
+    margin-top: 10dvh;
 }
 
 p.no-left-panel-small {
@@ -476,5 +487,11 @@ div.bottom-info {
 
     to {
         transform: translateX(100%);
+    }
+}
+
+@media (max-width: 800px) {
+    div.no-left-panel2 {
+        display: flex !important;
     }
 }
