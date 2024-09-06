@@ -3,33 +3,67 @@ let rotate = 0;
 let update = 0;
 let lastUpdate = 0;
 let distance = 0;
-const zoomLevels = [3, 4, 5, 6, 9];
-const zoomChangeInterval = 5000;
+const zoomLevels = [2, 3, 4, 6, 9];
+let updateInterval = 8;
+let zoomChangeInterval = 1000 * updateInterval;
 let play = true;
 let isPaneOpen = true;
+let isSettingsOpen = false;
 let isMetric = true;
-const doha = ["DOH","Doha",25.26, 51.55,"Asia/Qatar"];
-const toronto = ["YYZ","Toronto",43.67, -79.63,"America/Toronto"];
-const stjohns = ["YYT","St. John's",47.62, -52.74,"America/St_Johns"];
-const vancouver = ["YVR","Vancouver",49.19, -123.18,"America/Vancouver"];
-const dest = toronto;
-const orig = stjohns;
+const cities = [
+    ["DOH", "Doha", 25.26, 51.55, "Asia/Qatar"],
+    ["KHR", "Al Khor", 25.66, 51.50, "Asia/Qatar"],
+    ["YYZ", "Toronto", 43.67, -79.63, "America/Toronto"],
+    ["YYT", "St. John's", 47.62, -52.74, "America/St_Johns"],
+    ["YVR", "Vancouver", 49.19, -123.18, "America/Vancouver"],
+    ["YOW", "Ottawa", 45.42, -75.69, "America/Toronto"],
+    ["YUL", "Montreal", 45.5, -73.57, "America/Toronto"],
+    ["YYC", "Calgary", 51.05, -114.07, "America/Edmonton"],
+    ["JFK", "New York", 40.64, -73.78, "America/New_York"],
+    ["LAX", "Los Angeles", 33.94, -118.41, "America/Los_Angeles"],
+    ["LHR", "London", 51.47, -0.45, "Europe/London"],
+    ["CDG", "Paris", 49.01, 2.55, "Europe/Paris"],
+    ["AUH", "Abu Dhabi", 24.43, 54.65, "Asia/Dubai"],
+    ["DXB", "Dubai", 25.25, 55.36, "Asia/Dubai"],
+    ["HND", "Tokyo", 35.55, 139.78, "Asia/Tokyo"],
+    ["SYD", "Sydney", -33.87, 151.21, "Australia/Sydney"],
+    ["GRU", "São Paulo", -23.43, -46.47, "America/Sao_Paulo"],
+    ["PEK", "Beijing", 40.08, 116.59, "Asia/Shanghai"],
+    ["SIN", "Singapore", 1.35, 103.99, "Asia/Singapore"],
+    ["MEX", "Mexico City", 19.43, -99.13, "America/Mexico_City"],
+    ["IST", "Istanbul", 41.01, 28.96, "Europe/Istanbul"],
+    ["AMS", "Amsterdam", 52.31, 4.76, "Europe/Amsterdam"],
+    ["MAD", "Madrid", 40.49, -3.57, "Europe/Madrid"],
+    ["FRA", "Frankfurt", 50.04, 8.57, "Europe/Berlin"],
+    ["MUC", "Munich", 48.35, 11.79, "Europe/Berlin"],
+    ["CPT", "Cape Town", -33.93, 18.42, "Africa/Johannesburg"],
+    ["BKK", "Bangkok", 13.69, 100.75, "Asia/Bangkok"],
+    ["JNB", "Johannesburg", -26.13, 28.23, "Africa/Johannesburg"],
+    ["DEL", "New Delhi", 28.56, 77.1, "Asia/Kolkata"],
+    ["BOM", "Mumbai", 19.08, 72.88, "Asia/Kolkata"],
+    ["BLR", "Bengaluru", 12.97, 77.59, "Asia/Kolkata"],
+    ["HYD", "Hyderabad", 17.38, 78.48, "Asia/Kolkata"],
+    ["CCU", "Kolkata", 22.57, 88.36, "Asia/Kolkata"],
+    ["MAA", "Chennai", 13.08, 80.27, "Asia/Kolkata"]
+];
+let dest = cities[0];
+let orig = cities[2];
 var latlngs2 = [[orig[2], orig[3]]];  
 
-let map, lat, lon, plane, polyline, polyline2, origtime, desttime;
+let map, lat, lon, plane, polyline, polyline2, origin_marker, dest_marker, interval;
 const planeLogo = L.icon({iconUrl: 'img/plane.png', iconSize: [100, 100]});
-const destLogo = L.divIcon({
+let destLogo = L.divIcon({
     className: 'custom-icon',
     html: '<div><img src="img/marker.png" style="width: 20px; height: 20px;"/><span class="marker-label">'+dest[0]+'</span></div>',
     iconSize: [20, 20]
 });
-const originLogo = L.divIcon({
+let originLogo = L.divIcon({
     className: 'custom-icon',
     html: '<div><img src="img/marker.png" style="width: 20px; height: 20px;"/><span class="marker-label">'+orig[0]+'</span></div>',
     iconSize: [20, 20]
 });
-var dest_marker = L.marker([dest[2], dest[3]], {icon: destLogo, title: dest[1], zIndexOffset: 0}); 
-var origin_marker = L.marker([orig[2], orig[3]], {icon: originLogo, title: orig[1], zIndexOffset: 0}); 
+dest_marker = L.marker([dest[2], dest[3]], {icon: destLogo, title: dest[1], zIndexOffset: 0}); 
+origin_marker = L.marker([orig[2], orig[3]], {icon: originLogo, title: orig[1], zIndexOffset: 0}); 
 
 function getCityTime(timezone) {
     const options = {
@@ -62,6 +96,7 @@ function startLoop(){
         navigator.geolocation.getCurrentPosition(success, error);
 
         function success(position) {
+            $("div.no-left-panel").hide();
             lat = position.coords.latitude;
             lon = position.coords.longitude;
             if (plane){
@@ -71,7 +106,7 @@ function startLoop(){
             }
 
             //Current to Destination
-            const line = turf.greatCircle([lon, lat], [dest_marker.getLatLng().lng, dest_marker.getLatLng().lat]);
+            const line = turf.greatCircle([lon, lat], [dest[3], dest[2]]);
             var latlngs = line.geometry.coordinates.map(coord => [coord[1], coord[0]]);
             $("div.bottom-info12").text(turf.distance([lon, lat], [dest_marker.getLatLng().lng, dest_marker.getLatLng().lat], {units: 'kilometers'}).toFixed(0) + " km");
 
@@ -89,7 +124,7 @@ function startLoop(){
         }
 
         function error() {
-            window.alert("Unable to retrieve your location");
+            $("div.no-left-panel").css("display", "flex");
         }
     }
 
@@ -105,8 +140,8 @@ function updateInfo(){
             if (isPaneOpen){
                 distance += turf.distance(latlngs2[latlngs2.length - 1], latlngs2[latlngs2.length - 2], {units: 'kilometers'});
                 $("div.bottom-info10").text(distance.toFixed(0) + " km");
-                var speed = (turf.distance(latlngs2[latlngs2.length - 1], latlngs2[latlngs2.length - 2], {units: 'kilometers'}) / ((update-lastUpdate)*5))*3600;
-                $("div.bottom-info6").text(speed.toFixed(0) + " km/hr");
+                var speed = (turf.distance(latlngs2[latlngs2.length - 1], latlngs2[latlngs2.length - 2], {units: 'kilometers'}) / ((update-lastUpdate)*updateInterval))*3600;
+                $("div.bottom-info6").text(speed.toFixed(0) + " km/h");
                 const remDist = turf.distance([lon, lat], [dest_marker.getLatLng().lng, dest_marker.getLatLng().lat], {units: 'kilometers'});
                 const timeInSeconds = remDist / speed * 3600;
                 const hours = Math.floor(timeInSeconds / 3600);
@@ -164,9 +199,20 @@ function main(){
     //Info Pane
     $("a.pane").click(() => {
         if (isPaneOpen){
-            $("div.right-panel").animate({right: "-100%"}, 500);
-            $("a.pane i").css("color", "white");
-            $("div.left-panel").css("width", "100%");
+            if (isSettingsOpen){
+                $("div.settings").hide();
+                $("a.settings i").css("color", "white");
+                $("a.pane i").css("color", "red");
+                $("div.top-info-container").css("display", "grid");
+                $("div.bottom-info-container").css("display", "grid");
+                isSettingsOpen = false;
+                return;
+            } else {
+                $("div.right-panel").animate({right: "-100%"}, 500);
+                $("a.pane i").css("color", "white");
+                $("a.settings i").css("color", "white");
+                $("div.left-panel").css("width", "100%");
+            }
         } else {    
             $("div.right-panel").animate({right: "0"}, 500);
             $("a.pane i").css("color", "red");
@@ -198,7 +244,107 @@ function main(){
         }
     });
 
-    setInterval(() => {
+    // Where We Fly
+    $("a.home").click(() => {
+        if (play){
+            play = false;
+            $("a.play i").text("play_arrow");
+        }
+        if (isSettingsOpen){
+            $("a.pane").click();
+            $("a.pane").click();
+        } else if (isPaneOpen){
+            $("a.pane").click();
+        }
+        $("div.wherefly").css("display", "flex");
+    });
+
+    $("div.wherefly-close").click(() => {
+        $("div.wherefly").fadeOut(200);
+    });
+
+    //Settings
+    $("a.settings").click(() => {
+        if (!isPaneOpen){
+            $("a.pane").click();
+        }
+        if (!isSettingsOpen){
+            $("div.top-info-container").hide();
+            $("div.bottom-info-container").hide();
+            $("div.settings").css("display", "flex");
+            $("a.settings i").css("color", "red");
+            $("a.pane i").css("color", "white");
+        }
+        isSettingsOpen = true;
+    });
+
+    //Inputs
+    for (let i = 0; i < cities.length; i++){
+        $("select#origin-input").append(`<option value="${cities[i][1]}">${cities[i][1]}</option>`);
+        $("select#dest-input").append(`<option value="${cities[i][1]}1">${cities[i][1]}</option>`);
+    }
+    $("select#origin-input").val(orig[1]);
+    $("select#dest-input").val(dest[1]+"1");
+    $("select#interval-input").val(updateInterval.toString()+"sec");
+
+    $("select#origin-input").change(() => {
+        const city = cities.find(city => city[1] === $("select#origin-input").val());
+        orig = city;
+        map.removeLayer(origin_marker);
+        originLogo = L.divIcon({
+            className: 'custom-icon',
+            html: '<div><img src="img/marker.png" style="width: 20px; height: 20px;"/><span class="marker-label">'+orig[0]+'</span></div>',
+            iconSize: [20, 20]
+        });
+        origin_marker = L.marker([orig[2], orig[3]], {icon: originLogo, title: orig[1], zIndexOffset: 0}); 
+        origin_marker.addTo(map);
+        $("div.top-info1").text(city[0]);
+        $("div.top-info2").text(city[1]);
+        $("div.bottom-info2").text(getCityTime(city[4]));
+        latlngs2 = [[city[2], city[3]], [lat, lon]];
+        distance = turf.distance(latlngs2[0], latlngs2[1], {units: 'kilometers'});
+        $("div.bottom-info10").text(distance.toFixed(0) + " km");
+        map.removeLayer(polyline2);
+        polyline2 = L.polyline(latlngs2, {color: 'white', weight: 8}).addTo(map);
+        rotate = calculateHeading(latlngs2[0][1], latlngs2[0][0],latlngs2[1][1], latlngs2[1][0]);
+        $("div.bottom-info14").text("00:00");
+        $("div.bottom-info16").text("00:00");
+    });
+
+    $("select#dest-input").change(() => {
+        const city = cities.find(city => city[1] === $("select#dest-input").val().slice(0, -1));
+        dest = city;
+        map.removeLayer(dest_marker);
+        destLogo = L.divIcon({
+            className: 'custom-icon',
+            html: '<div><img src="img/marker.png" style="width: 20px; height: 20px;"/><span class="marker-label">'+dest[0]+'</span></div>',
+            iconSize: [20, 20]
+        });
+        dest_marker = L.marker([dest[2], dest[3]], {icon: destLogo, title: dest[1], zIndexOffset: 0}); 
+        dest_marker.addTo(map);
+        map.removeLayer(polyline);
+        polyline = L.polyline(turf.greatCircle([lon, lat], [dest_marker.getLatLng().lng, dest_marker.getLatLng().lat]).geometry.coordinates.map(coord => [coord[1], coord[0]]), {color: 'white', opacity: 0.6, weight: 8}).addTo(map);
+        $("div.top-info4").text(city[0]);
+        $("div.top-info5").text(city[1]);
+        $("div.bottom-info4").text(getCityTime(city[4]));
+        latlngs = [[lon, lat], [city[2], city[3]]];
+        var new_diff = turf.distance([lon, lat], [city[3], city[2]], {units: 'kilometers'}).toFixed(0);
+        $("div.bottom-info12").text(new_diff + " km");
+        $("div.bottom-info14").text("00:00");
+        $("div.bottom-info16").text("00:00");
+    });
+
+    $("select#interval-input").change(() => {
+        updateInterval = parseInt($("select#interval-input").val().slice(0, -3));
+        zoomChangeInterval = 1000 * updateInterval;
+        clearInterval(interval);
+        interval = setInterval(() => {
+            updateZoomLevel();
+            startLoop();
+        }, zoomChangeInterval);
+    });
+
+    interval = setInterval(() => {
         updateZoomLevel();
         startLoop();
     }, zoomChangeInterval);
