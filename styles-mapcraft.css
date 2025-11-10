@@ -3,16 +3,6 @@
     src: local('FallingSky'), url('FallingSky.otf') format('opentype');
 }
 
-@font-face {
-    font-family: 'Segoe UI';
-    src:
-        local("Segoe UI Light"),
-        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff2) format("woff2"),
-        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.woff) format("woff"),
-        url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf) format("truetype");
-    font-weight: 100;
-}
-
 /* App Settings */
 div.wherefly {
     position: fixed;
@@ -21,7 +11,7 @@ div.wherefly {
     justify-content: center;
     background-color: #35353518;
     color: white;
-    font-family: 'Segoe UI';
+    font-weight: 100;
     width: 100%;
     height: 100dvh;
     top: 0;
@@ -31,27 +21,31 @@ div.wherefly {
 
 div.wherefly-main {
     background-color: #353535;
-    padding: 1rem 3rem;
+    padding: 0rem 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: 'system-ui';
     width: 55rem;
 }
 
 div.wherefly-main h2 {
     font-weight: 500;
+    font-family: 'FallingSky';
+    margin-bottom: 0.25rem;
 }
 
 div.wherefly-close {
     margin: 0;
-    margin-top: 0.8rem;
-    margin-bottom: 1.2rem;
+    margin-top: 0rem;
+    margin-bottom: 2rem;
     margin-left: 50rem;
     background-color: #454545;
     width: fit-content;
     padding: 4px 20px;
     border: white solid 2.5px;
     cursor: pointer;
+    font-family: 'FallingSky';
 }
 
 div.wherefly-close:hover {
@@ -136,20 +130,15 @@ a.play:hover {
     transition: 0.25s;
 }
 
-img.headerimg {
-    width: 30px;
-    height: 31.2px;
-    margin-left: 0.6rem;
+i.home {
+    cursor: pointer;
+    color: white;
+    padding: 1rem;
 }
 
-a.title {
-    color: white;
-    font-weight: bold;
-    font-size: 1.55rem;
-    margin-left: 0.7rem;
-    text-align: center;
-    color: white;
-    text-decoration: none;
+i.home:hover {
+    background-color: rgb(35, 35, 35);
+    transition: 0.25s;
 }
 
 div.loading {
@@ -365,7 +354,6 @@ div.bottom-info-container {
     margin: 3rem;
     height: 25rem;
     column-gap: 1.25rem;
-    font-family: 'Calibri';
     grid-template-areas:
         'lto ltd'
         'ltoi ltdi'

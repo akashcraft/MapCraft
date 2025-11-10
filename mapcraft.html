@@ -9,18 +9,22 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
      crossorigin=""/>
-    <title>AkashCraft - MapCraft</title>
+    <link rel="preload" href="/img/unlock.png" as="image" type="img/png" crossorigin>
+    <link rel="preload" href="/img/marker.png" as="image" type="img/png" crossorigin>
+    <link rel="preload" href="/img/plane.png" as="image" type="img/png" crossorigin>
+    <link rel="preload" href="/img/plane2.svg" as="image" type="img/svg" crossorigin>
+    <link rel="preload" href="/FallingSky.otf" as="font" type="font/otf" crossorigin>
+    <title>AkashCraft</title>
 </head>
 <body>
     <div class="loading">
         <div class="loadwrapper"><img src="img/spinner.png"></div>
-        <p style="font-size: 1.5em; margin-top:1rem;">Loading/Chargement</p>
+        <p style="font-size: 1.5em; margin-top:1rem;">Loading</p>
     </div>
     <div class="mainapp">
         <header>
             <div class="headerleft">
-                <img class="headerimg" src="img/Channel Logo Rounded.png">
-                <a href="javascript.php" class="title">MapCraft</h1>
+                <i onclick="window.location.href = 'https://www.akashcraft.ca/#/web'" class="material-icons home">home</i>
             </div>
             <div class="headerright">
                 <a class="home"><i class="material-icons">map</i>WHERE WE FLY</a>
@@ -31,17 +35,18 @@
         </header>
         <div class="wherefly">
             <div class="wherefly-main">
+            <img src="img/unlock.png" style="width: 40rem; height: auto; margin: 1rem 0;" />
             <h2>
-                This feature is not available at this moment
+                Full System Access Restricted
             </h2>
-            <p>Thank you for experiencing my replication of Air Canada In-Flight System. Unfortunately, I cannot go any further and also replicate and code each part of this system. At this rate we would be making the whole operating system on the website and Air Canada will soon have a lawsuit against me lol. Appreciate your interest!</p>
+            <p>Unfortunately, I’m unable to share the full version publicly on my website due to potential copyright concerns involving Air Canada and its affiliates. If you’re genuinely interested in seeing a private demo, feel free to reach out to me. Thank you for your understanding!</p>
             <div class="wherefly-close">
                 Close
             </div>
             </div>  
         </div>
     <div class="no-left-panel2">
-        <i onclick="window.location.href='javascript.php'" class="material-symbols-outlined panel-close">close</i>
+        <i onclick="window.location.href='/#/web'" class="material-symbols-outlined panel-close">close</i>
         <div class="no-left-panel-text">
             <div>
                 <i class="material-symbols-outlined" style="color: #EA3323">warning</i>
@@ -53,15 +58,15 @@
         </div>
     </div>
     <div class="no-left-panel">
-        <i onclick="window.location.href='javascript.php'" class="material-symbols-outlined panel-close">close</i>
+        <i onclick="window.location.href='/#/web'" class="material-symbols-outlined panel-close">close</i>
         <div class="no-left-panel-text">
             <div>
                 <i class="material-symbols-outlined">location_off</i>
                 <img class="no-left-panel-image" src="img/plane2.svg">
             </div>
             <div class="no-left-panel-text">
-                <p class="no-left-panel-small">SYSTEM NOT AVAILABLE</p>
-                <p class="no-left-panel-small">SYSTEME NON DISPONIBLE</p>
+                <p class="no-left-panel-small">PLEASE ALLOW LOCATION SERVICES</p>
+                <p class="no-left-panel-small">VEUILLEZ AUTORISER LES SERVICES DE LOCALISATION</p>
             </div>
         </div>
     </div>
@@ -117,7 +122,7 @@
 </body>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="leaflet.rotatedMarker.js"> </script>
-<script src="https://unpkg.com/@turf/turf"></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf/turf.min.js"></script>
 <script src="mapcraft.js"></script>
 <script src="blocker.js"></script>
 </html>
